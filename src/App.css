@@ -1,12 +1,14 @@
+@import url("https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700&display=swap");
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    /* display: none; <- Crashes Chrome on hover */
-    -webkit-appearance: none;
-    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
-input[type=number] {
-    -moz-appearance:textfield; /* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
 }
 
 .App {
@@ -23,7 +25,7 @@ input[type=number] {
 }
 
 .App-header {
-  color: #8E8E8E;
+  color: #8e8e8e;
   display: flex;
   flex-direction: column;
 }

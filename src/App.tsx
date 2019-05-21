@@ -1,8 +1,15 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 
-class App extends React.Component<any, any> {
+export interface ITipCalculator {
+  billTotal: number;
+  taxes: number;
+  partySize: number;
+  tipPercent: number;
+  tipTotal: number;
+}
+
+class App extends React.Component<any, ITipCalculator> {
   state = {
     billTotal: 0,
     taxes: 0,
@@ -25,7 +32,8 @@ class App extends React.Component<any, any> {
     let totalNoTax = billTotal - taxes;
     let dividedByPartySize = totalNoTax / partySize;
     let tipAsPercent = tipPercent / 100;
-    let outPut = (dividedByPartySize * tipAsPercent).toFixed(2);
+    let outPut = parseFloat((dividedByPartySize * tipAsPercent).toFixed(2));
+    // debugger;
     this.setState({
       tipTotal: outPut
     });
@@ -194,22 +202,14 @@ function SplitSettings(props: any): JSX.Element {
 //------------------------------------------------------
 
 //>>>>>>>>>>>>>>>>> TIP TOTAL
-class TipTotal extends React.Component<any, any> {
-  constructor(props: any) {
-    super(props);
-    this.state = {
-      tipAmount: 5.43
-    };
-  }
-  render() {
-    return (
-      <div className="section">
-        <label className="inputLabel">{this.props.label}</label>
-        <input type="checkbox" name="splitToggle" />
-        <h1>${this.props.tipTotal}</h1>
-      </div>
-    );
-  }
+function TipTotal(props: any): JSX.Element {
+  return (
+    <div className="section">
+      <label className="inputLabel">{props.label}</label>
+      <input type="checkbox" name="splitToggle" />
+      <h1>${props.tipTotal}</h1>
+    </div>
+  );
 }
 //>>>>>>>>>>>>>>>>> END  TIP TOTAL
 
