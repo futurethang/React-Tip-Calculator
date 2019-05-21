@@ -28,7 +28,7 @@ class App extends React.Component<any, ITipCalculator> {
   };
 
   updateTip = () => {
-    const { billTotal, taxes, partySize, tipPercent, tipTotal } = this.state;
+    const { billTotal, taxes, partySize, tipPercent } = this.state;
     let totalNoTax = billTotal - taxes;
     let dividedByPartySize = totalNoTax / partySize;
     let tipAsPercent = tipPercent / 100;
@@ -82,7 +82,7 @@ class App extends React.Component<any, ITipCalculator> {
           decrement={this.decrementPartySize}
         />
         <TipSettings
-          label="tip % "
+          label="tip"
           tipPercent={this.state.tipPercent}
           updateBalance={this.updateBalance}
           dataProp="tipPercent"
@@ -132,15 +132,16 @@ class InputCheck extends React.Component<any, any> {
     return (
       <div className="section">
         <label className="inputLabel">{this.props.label}</label>
-        <br />
-        <span>$</span>
-        <input
-          type="number"
-          step="0.01"
-          className="text"
-          placeholder={this.props.balance}
-          onChange={this.handleChange}
-        />
+        <div className="inputArea">
+          <span>$</span>
+          <input
+            type="number"
+            step="0.01"
+            className="inputArea_text"
+            placeholder={this.props.balance}
+            onChange={this.handleChange}
+          />
+        </div>
       </div>
     );
   }
@@ -151,12 +152,8 @@ class InputCheck extends React.Component<any, any> {
 
 //>>>>>>>>>>>>>>>>>> TIPSETTINGS
 class TipSettings extends React.Component<any, any> {
-  constructor(props: any) {
-    super(props);
-  }
-
   handleChange = (e: any) => {
-    let newValue = parseFloat(e.target.value.slice(0, 2));
+    let newValue = parseFloat(e.target.value.slice(0, 2)) || 0;
     let updateObj = {
       newValue: newValue,
       propToUpdate: this.props.dataProp
@@ -168,15 +165,18 @@ class TipSettings extends React.Component<any, any> {
     return (
       <div className="section">
         <label className="inputLabel">{this.props.label}</label>
-        <input
-          type="number"
-          min="0"
-          max="100"
-          step="0.01"
-          className="tip"
-          placeholder={this.props.tipPercent}
-          onChange={this.handleChange}
-        />
+        <div className="inputArea">
+          <input
+            type="number"
+            min="0"
+            max="100"
+            step="0.01"
+            className="inputArea_text--tip"
+            placeholder={this.props.tipPercent}
+            onChange={this.handleChange}
+          />
+          <span>%</span>
+        </div>
         {/* replace with onTouch slider UI element that modifies state */}
       </div>
     );
@@ -191,9 +191,11 @@ function SplitSettings(props: any): JSX.Element {
   return (
     <div className="section">
       <label className="inputLabel">{props.label}</label>
-      <button onClick={() => props.increment()}>+</button>
-      <button onClick={() => props.decrement()}>-</button>
-      <h3>party of {props.partySize}</h3>
+      <div className="inputArea">
+        <span className="inputArea_text--split">party of {props.partySize}</span>
+        <span onClick={() => props.increment()}>+</span>
+        <span onClick={() => props.decrement()}>-</span>
+      </div>
     </div>
   );
 }
@@ -207,7 +209,7 @@ function TipTotal(props: any): JSX.Element {
     <div className="section">
       <label className="inputLabel">{props.label}</label>
       <input type="checkbox" name="splitToggle" />
-      <h1>${props.tipTotal}</h1>
+      <span className="taxTotal">${props.tipTotal}</span>
     </div>
   );
 }

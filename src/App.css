@@ -28,6 +28,7 @@ input[type="number"] {
   color: #8e8e8e;
   display: flex;
   flex-direction: column;
+  margin-bottom: -20px;
 }
 
 .App-link {
@@ -42,8 +43,95 @@ input[type="number"] {
     transform: rotate(360deg);
   }
 }
-
+h1 {
+  font-family: "Quicksand", sans-serif;
+  font-weight: 100;
+  color: rgb(56, 73, 110);
+  letter-spacing: .1em;
+}
 .section {
-  border: 1px dashed salmon;
-  margin: 10px;
+  /* border: 1px solid #fff; */
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.inputLabel {
+  font-family: "Quicksand", sans-serif;
+  font-weight: 400;
+  font-size: 1.25em;
+  text-align: left;
+  color: #999;
+  
+}
+
+.inputArea {
+  font-family: "Quicksand", sans-serif;
+  font-size: 2em;
+  font-weight: 100;
+  color: rgb(56, 73, 110);
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: baseline;
+}
+
+.inputArea_text {
+  background-color: #eee;
+  font-family: "Quicksand", sans-serif;
+  font-size: 1.25em;
+  font-weight: 100;
+  color: rgb(56, 73, 110);
+  margin-left: 4px;
+  border: none;
+  background-image: none;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  width: 80%;
+}
+.inputArea_text--tip {
+  background-color: #eee;
+  font-family: "Quicksand", sans-serif;
+  font-size: 1.25em;
+  font-weight: 100;
+  color: rgb(56, 73, 110);
+  margin-left: 4px;
+  border: none;
+  background-image: none;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  width: 30%;
+}
+.inputArea_text--split {
+  background-color: #eee;
+  font-family: "Quicksand", sans-serif;
+  font-size: 1.25em;
+  font-weight: 100;
+  color: rgb(56, 73, 110);
+  margin-right: 8px;
+  border: none;
+  background-image: none;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  width: 100%;
+}
+
+.taxTotal {
+  font-family: "Quicksand", sans-serif;
+  font-size: 4em;
+  color: #444;
+  margin-block-start: .25em;
+  margin-block-end: .25em;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: baseline;
 }
