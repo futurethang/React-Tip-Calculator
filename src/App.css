@@ -1,5 +1,19 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
 .App {
+  width: 375px;
+  margin: auto;
   text-align: center;
+  background: #eeeeee;
 }
 
 .App-logo {
@@ -9,14 +23,9 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  color: #8E8E8E;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .App-link {
@@ -30,4 +39,9 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.section {
+  border: 1px dashed salmon;
+  margin: 10px;
 }
