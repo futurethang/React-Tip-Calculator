@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
         width: "120%",
         height: "100%",
         borderLeft: "40px solid white",
-        padding: "5px 0px",
+        padding: "10px 0px",
         position: "relative",
         left: "-40px"
       });

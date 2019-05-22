@@ -170,7 +170,7 @@ class TipSettings extends React.Component<any, any> {
             type="number"
             min="0"
             max="100"
-            step="0.01"
+            step="1"
             className="inputArea_text--tip"
             placeholder={this.props.tipPercent}
             onChange={this.handleChange}
@@ -194,7 +194,7 @@ function SplitSettings(props: any): JSX.Element {
       <div className="inputArea">
         <span className="inputArea_text--split">party of {props.partySize}</span>
         <span onClick={() => props.increment()}>+</span>
-        <span onClick={() => props.decrement()}>-</span>
+        <span onClick={() => props.decrement()}>&#8211;</span>
       </div>
     </div>
   );

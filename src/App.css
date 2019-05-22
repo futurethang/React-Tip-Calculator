@@ -119,7 +119,7 @@ input:focus {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
-  width: 30%;
+  /* width: 40%; */
 }
 .inputArea_text--split {
   background-color: #eee;
