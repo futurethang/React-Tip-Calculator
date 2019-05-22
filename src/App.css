@@ -60,9 +60,7 @@ input {
 
 input:focus {
     background: #fff;
-    border: 1px red;
-    outline-color: #eee;
-    width: 
+    outline-color: #fff;
 }
 
 .section {
