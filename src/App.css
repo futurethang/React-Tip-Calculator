@@ -47,8 +47,24 @@ h1 {
   font-family: "Quicksand", sans-serif;
   font-weight: 100;
   color: rgb(56, 73, 110);
-  letter-spacing: .1em;
+  letter-spacing: 0.1em;
 }
+
+input {
+  -webkit-transition: all .1s ease;
+  -moz-transition: all .1s ease;
+  -o-transition: all .1s ease;
+  -ms-transition: all .1s ease;
+  transition: all .1s ease;
+}
+
+input:focus {
+    background: #fff;
+    border: 1px red;
+    outline-color: #eee;
+    width: 
+}
+
 .section {
   /* border: 1px solid #fff; */
   margin: 20px;
@@ -64,7 +80,6 @@ h1 {
   font-size: 1.25em;
   text-align: left;
   color: #999;
-  
 }
 
 .inputArea {
@@ -128,8 +143,8 @@ h1 {
   font-family: "Quicksand", sans-serif;
   font-size: 4em;
   color: #444;
-  margin-block-start: .25em;
-  margin-block-end: .25em;
+  margin-block-start: 0.25em;
+  margin-block-end: 0.25em;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
