@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function() {
-  
   // select for the input fields to add interaction effect
   const inputs = document.querySelectorAll("input");
   // add event listener to activate and deactivate each individual input
@@ -13,14 +12,4 @@ document.addEventListener("DOMContentLoaded", function() {
       input.closest(".section").classList.toggle("focus");
     });
   });
-
-
-  // select the icons to add interaction effect
-  const icons = document.querySelectorAll(".icon");
-
-  icons.forEach(icon => {
-    icon.addEventListener('click', e => {
-      e.target.classList.toggle("icon-press")
-    })
-  })
 });

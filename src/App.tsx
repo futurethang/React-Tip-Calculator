@@ -14,7 +14,7 @@ class App extends React.Component<any, ITipCalculator> {
     billTotal: 0,
     taxes: 0,
     partySize: 1,
-    tipPercent: 20,
+    tipPercent: 18,
     tipTotal: 0
   };
 
@@ -151,42 +151,6 @@ class InputCheck extends React.Component<any, any> {
 
 //------------------------------------------------------
 
-//>>>>>>>>>>>>>>>>>> TIPSETTINGS
-class TipSettings extends React.Component<any, any> {
-  handleChange = (e: any) => {
-    let newValue = parseFloat(e.target.value.slice(0, 2)) || 0;
-    let updateObj = {
-      newValue: newValue,
-      propToUpdate: this.props.dataProp
-    };
-    this.props.updateBalance(updateObj);
-  };
-
-  render() {
-    return (
-      <div className="section">
-        <label className="inputLabel">{this.props.label}</label>
-        <div className="inputArea" style={{ justifyContent: "flex-start" }}>
-          <input
-            type="number"
-            min="0"
-            max="100"
-            step="1"
-            className="inputArea_text--tip"
-            placeholder={this.props.tipPercent}
-            onChange={this.handleChange}
-          />
-          <span>%</span>
-        </div>
-        {/* replace with onTouch slider UI element that modifies state */}
-      </div>
-    );
-  }
-}
-//>>>>>>>>>>>>>>>>>> END TIPSETTINGS
-
-//------------------------------------------------------
-
 //>>>>>>>>>>>>>>>>> SPLITSETTINGS
 function SplitSettings(props: any): JSX.Element {
   return (
@@ -209,6 +173,64 @@ function SplitSettings(props: any): JSX.Element {
   );
 }
 //>>>>>>>>>>>>>>> END SPLITSETTINGS
+
+//------------------------------------------------------
+
+//>>>>>>>>>>>>>>>>>> TIPSETTINGS
+class TipSettings extends React.Component<any, any> {
+  handleChange = (e: any) => {
+    let newValue = parseFloat(e.target.value.slice(0, 2)) || 0;
+    let updateObj = {
+      newValue: newValue,
+      propToUpdate: this.props.dataProp
+    };
+    this.props.updateBalance(updateObj);
+  };
+
+  slideTipUpdate = (e: number) => {
+    let tip; // default tip amount to adjust with swipe
+    let minimumTip: number = 10;
+    let maximumTip: number = 35;
+    let maxWidth: number = 375;
+    let touchScale: number;
+    let xScale = e / maxWidth;
+    touchScale = xScale > 1 ? 1 : xScale;
+    tip = touchScale * maximumTip > minimumTip ? touchScale * maximumTip : 10;
+    tip = tip.toFixed(0);
+    const updateObj = {
+      newValue: tip,
+      propToUpdate: this.props.dataProp
+    };
+    this.props.updateBalance(updateObj);
+  };
+
+  render() {
+    return (
+      <div
+        className="section tipPercent"
+        onTouchMove={e => {
+          this.slideTipUpdate(e.touches[0].clientX);
+        }}
+      >
+        <label className="inputLabel">{this.props.label}</label>
+        <div className="inputArea" style={{ justifyContent: "flex-start" }}>
+          <input
+            type="number"
+            min="0"
+            max="100"
+            step="1"
+            className="inputArea_text--tip"
+            placeholder={this.props.tipPercent}
+            onChange={this.handleChange}
+          />
+          <span>%</span>
+        </div>
+        {/* replace with onTouch slider UI element that modifies state */}
+      </div>
+    );
+  }
+}
+//>>>>>>>>>>>>>>>>>> END TIPSETTINGS
 
 //------------------------------------------------------
 
