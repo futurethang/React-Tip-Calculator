@@ -15,11 +15,13 @@ class App extends React.Component<any, ITipCalculator> {
     taxes: 0,
     partySize: 1,
     tipPercent: 18,
-    tipTotal: 0
+    tipTotal: 0,
+    hue: 100
   };
 
   updateBalance = async (updateObj: any) => {
     const { newValue, propToUpdate } = updateObj;
+    console.log(newValue, propToUpdate);
     let updatedState: any = { ...this.state };
     updatedState[propToUpdate] = newValue;
     // debugger;
@@ -62,7 +64,10 @@ class App extends React.Component<any, ITipCalculator> {
 
   render() {
     return (
-      <div className="App">
+      <div
+        className="App"
+        style={{ backgroundColor: `hsla(${this.state.hue},60%,90%,1)` }}
+      >
         <Header />
         <InputCheck
           label="bill total"
@@ -187,21 +192,32 @@ class TipSettings extends React.Component<any, any> {
     this.props.updateBalance(updateObj);
   };
 
-  slideTipUpdate = (e: number) => {
+  slideTipUpdate = async (e: number) => {
     let tip; // default tip amount to adjust with swipe
     let minimumTip: number = 10;
     let maximumTip: number = 35;
+    let minimumHue: number = 0;
+    let maximumHue: number = 200;
     let maxWidth: number = 375;
     let touchScale: number;
     let xScale = e / maxWidth;
     touchScale = xScale > 1 ? 1 : xScale;
     tip = touchScale * maximumTip > minimumTip ? touchScale * maximumTip : 10;
     tip = tip.toFixed(0);
-    const updateObj = {
+    let hue: any =
+      touchScale * maximumHue > minimumHue ? touchScale * maximumHue : 0;
+    hue = hue.toFixed(0);
+    const updateTip = {
       newValue: tip,
       propToUpdate: this.props.dataProp
     };
-    this.props.updateBalance(updateObj);
+    const updateHue = {
+      newValue: hue,
+      propToUpdate: "hue"
+    };
+    // console.log(updateHue.newValue);
+    await this.props.updateBalance(updateTip);
+    this.props.updateBalance(updateHue);
   };
 
   render() {
