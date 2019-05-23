@@ -21,7 +21,7 @@ class App extends React.Component<any, ITipCalculator> {
 
   updateBalance = async (updateObj: any) => {
     const { newValue, propToUpdate } = updateObj;
-    console.log(newValue, propToUpdate);
+    // console.log(newValue, propToUpdate);
     let updatedState: any = { ...this.state };
     updatedState[propToUpdate] = newValue;
     // debugger;
