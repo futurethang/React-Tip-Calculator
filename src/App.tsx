@@ -32,7 +32,8 @@ class App extends React.Component<any, ITipCalculator> {
     let totalNoTax = billTotal - taxes;
     let dividedByPartySize = totalNoTax / partySize;
     let tipAsPercent = tipPercent / 100;
-    let outPut = parseFloat((dividedByPartySize * tipAsPercent).toFixed(2));
+    let outPut =
+      parseFloat((dividedByPartySize * tipAsPercent).toFixed(2)) || 0;
     // debugger;
     this.setState({
       tipTotal: outPut
@@ -165,7 +166,7 @@ class TipSettings extends React.Component<any, any> {
     return (
       <div className="section">
         <label className="inputLabel">{this.props.label}</label>
-        <div className="inputArea">
+        <div className="inputArea" style={{ justifyContent: "flex-start" }}>
           <input
             type="number"
             min="0"
@@ -192,9 +193,17 @@ function SplitSettings(props: any): JSX.Element {
     <div className="section">
       <label className="inputLabel">{props.label}</label>
       <div className="inputArea">
-        <span className="inputArea_text--split">party of {props.partySize}</span>
-        <span onClick={() => props.increment()}>+</span>
-        <span onClick={() => props.decrement()}>&#8211;</span>
+        <span className="inputArea_text--split">
+          party of {props.partySize}
+        </span>
+        <div className="addMinusButtons">
+          <span onClick={() => props.increment()}>
+            <i className="icon fas fa-plus-circle" />
+          </span>
+          <span onClick={() => props.decrement()}>
+            <i className="icon fas fa-minus-circle" />
+          </span>
+        </div>
       </div>
     </div>
   );
@@ -208,7 +217,6 @@ function TipTotal(props: any): JSX.Element {
   return (
     <div className="section">
       <label className="inputLabel">{props.label}</label>
-      <input type="checkbox" name="splitToggle" />
       <span className="taxTotal">${props.tipTotal}</span>
     </div>
   );

@@ -51,16 +51,16 @@ h1 {
 }
 
 input {
-  -webkit-transition: all .1s ease;
-  -moz-transition: all .1s ease;
-  -o-transition: all .1s ease;
-  -ms-transition: all .1s ease;
-  transition: all .1s ease;
+  -webkit-transition: padding 0.1s ease;
+  -moz-transition: padding 0.1s ease;
+  -o-transition: padding 0.1s ease;
+  -ms-transition: padding 0.1s ease;
+  transition: padding 0.1s ease;
 }
 
 input:focus {
-    background: #fff;
-    outline-color: #fff;
+  background: #fff;
+  outline-color: #fff;
 }
 
 .section {
@@ -70,6 +70,21 @@ input:focus {
   flex-direction: column;
   justify-content: space-around;
   align-items: flex-start;
+  -webkit-transition: padding 300ms ease;
+  -moz-transition: padding 300ms ease;
+  -o-transition: padding 300ms ease;
+  -ms-transition: padding 300ms ease;
+  transition: padding 300ms ease;
+}
+
+.focus {
+  background-color: #fff;
+  width: 120%;
+  height: 100%;
+  border-left: 40px solid white;
+  padding: 10px 0px;
+  position: relative;
+  left: -40px;
 }
 
 .inputLabel {
@@ -87,7 +102,7 @@ input:focus {
   color: rgb(56, 73, 110);
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: baseline;
 }
 
@@ -104,7 +119,7 @@ input:focus {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
-  width: 80%;
+  width: 100%;
 }
 .inputArea_text--tip {
   background-color: #eee;
@@ -112,20 +127,21 @@ input:focus {
   font-size: 1.25em;
   font-weight: 100;
   color: rgb(56, 73, 110);
-  margin-left: 4px;
+  margin-left: 0px;
   border: none;
   background-image: none;
   background-color: transparent;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
-  /* width: 40%; */
+  width: 53px;
 }
 .inputArea_text--split {
   background-color: #eee;
   font-family: "Quicksand", sans-serif;
   font-size: 1.25em;
   font-weight: 100;
+  text-align: left;
   color: rgb(56, 73, 110);
   margin-right: 8px;
   border: none;
@@ -134,7 +150,20 @@ input:focus {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
-  width: 100%;
+  width: 215px;
+}
+
+.icon {
+  margin: 0 6px;
+  -webkit-transition: transform 75ms ease-in-out;
+  -moz-transition: transform 75ms ease-in-out;
+  -o-transition: transform 75ms ease-in-out;
+  -ms-transition: transform 75ms ease-in-out;
+  transition: transform 75ms ease-in-out;
+}
+
+.icon:active { 
+  transform: scale(.8)
 }
 
 .taxTotal {
@@ -148,3 +177,4 @@ input:focus {
   justify-content: flex-start;
   align-items: baseline;
 }
+

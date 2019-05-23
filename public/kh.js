@@ -1,33 +1,26 @@
 document.addEventListener("DOMContentLoaded", function() {
-  const sections = document.querySelectorAll(".section");
+  
+  // select for the input fields to add interaction effect
   const inputs = document.querySelectorAll("input");
-
+  // add event listener to activate and deactivate each individual input
   inputs.forEach(input => {
     // set action for when the area is focused upon
     input.addEventListener("focus", e => {
-      Object.assign(input.closest(".section").style, {
-        backgroundColor: "#fff",
-        width: "120%",
-        height: "100%",
-        borderLeft: "40px solid white",
-        padding: "10px 0px",
-        position: "relative",
-        left: "-40px"
-      });
-      // input.parentElement.style.backgroundColor = "orange";
+      input.closest(".section").classList.toggle("focus");
     });
     // reset when the area is focused away from
     input.addEventListener("blur", e => {
-      // input.closest(".section").style.backgroundColor = "#EEEEEE";
-      Object.assign(input.closest(".section").style, {
-        backgroundColor: "#eee",
-        width: "auto",
-        height: "100%",
-        borderLeft: "none",
-        padding: "0px",
-        position: "relative",
-        left: "0px"
-      });
+      input.closest(".section").classList.toggle("focus");
     });
   });
+
+
+  // select the icons to add interaction effect
+  const icons = document.querySelectorAll(".icon");
+
+  icons.forEach(icon => {
+    icon.addEventListener('click', e => {
+      e.target.classList.toggle("icon-press")
+    })
+  })
 });
