@@ -7,6 +7,7 @@ export interface ITipCalculator {
   partySize: number;
   tipPercent: number;
   tipTotal: number;
+  grandTotal: number;
 }
 
 class App extends React.Component<any, ITipCalculator> {
@@ -16,6 +17,7 @@ class App extends React.Component<any, ITipCalculator> {
     partySize: 1,
     tipPercent: 18,
     tipTotal: 0,
+    grandTotal: 0,
     hue: 100
   };
 
@@ -32,13 +34,22 @@ class App extends React.Component<any, ITipCalculator> {
   updateTip = () => {
     const { billTotal, taxes, partySize, tipPercent } = this.state;
     let totalNoTax = billTotal - taxes;
-    let dividedByPartySize = totalNoTax / partySize;
+
     let tipAsPercent = tipPercent / 100;
-    let outPut =
-      parseFloat((dividedByPartySize * tipAsPercent).toFixed(2)) || 0;
+    let tipTotal = totalNoTax * tipAsPercent || 0;
+    let grandTotal = Math.round((Number(billTotal) + tipTotal) * 1e2) / 1e2;
+
+    // (Number(billTotal) + tipTotal).toFixed(2);
+
+    // the issure below is that the tip total comes after party division, which leaves no reference to the actual tip total, just the split one
+    let outPut = Math.round((tipTotal / partySize) * 1e2) / 1e2;
+    // parseInt((tipTotal / partySize).toFixed(2));
+
     // debugger;
+    // let dividedByPartySize = totalNoTax / partySize;
     this.setState({
-      tipTotal: outPut
+      tipTotal: outPut,
+      grandTotal: grandTotal
     });
   };
 
@@ -81,19 +92,23 @@ class App extends React.Component<any, ITipCalculator> {
           dataProp="taxes"
           balance={this.state.taxes}
         />
-        <SplitSettings
-          label="split"
-          partySize={this.state.partySize}
-          increment={this.incrementPartySize}
-          decrement={this.decrementPartySize}
-        />
         <TipSettings
           label="tip"
           tipPercent={this.state.tipPercent}
           updateBalance={this.updateBalance}
           dataProp="tipPercent"
         />
-        <TipTotal label="amount due" tipTotal={this.state.tipTotal} />
+        <SplitSettings
+          label="split"
+          partySize={this.state.partySize}
+          increment={this.incrementPartySize}
+          decrement={this.decrementPartySize}
+        />
+        <TipTotal label="tip per person" tipTotal={this.state.tipTotal} />
+        <GrandTotal
+          label="total amount due"
+          grandTotal={this.state.grandTotal}
+        />
       </div>
     );
   }
@@ -260,6 +275,19 @@ function TipTotal(props: any): JSX.Element {
   );
 }
 //>>>>>>>>>>>>>>>>> END  TIP TOTAL
+
+//------------------------------------------------------
+
+//>>>>>>>>>>>>>>>>> GRAND TOTAL
+function GrandTotal(props: any): JSX.Element {
+  return (
+    <div className="section">
+      <label className="inputLabel">{props.label}</label>
+      <span className="taxTotal">${props.grandTotal}</span>
+    </div>
+  );
+}
+//>>>>>>>>>>>>>>>>> END  GRAND TOTAL
 
 //------------------------------------------------------
 
