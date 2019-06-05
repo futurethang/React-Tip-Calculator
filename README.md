@@ -2,7 +2,7 @@
 
 A simple, clean and intuitive calculator to help patrons compute and easily split gratuity without tax included.
 
-Visit the live project at [link forthcoming]
+Visit the live project at [https://shrouded-chamber-75975.herokuapp.com/](https://shrouded-chamber-75975.herokuapp.com/)
 
 ### Developer's Notes:
 
