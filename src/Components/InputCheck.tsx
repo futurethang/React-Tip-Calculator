@@ -1,17 +1,6 @@
 import React from "react";
 import "../App.css";
 
-export interface ITipCalculator {
-  // Defin the shape of the main State object
-  billTotal: number;
-  taxes: number;
-  partySize: number;
-  tipPercent: number;
-  tipTotal: number;
-  grandTotal: number;
-}
-
-//>>>>>>>>>>>>>>>>>> INPUTCHECK
 export default class InputCheck extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
@@ -47,4 +36,3 @@ export default class InputCheck extends React.Component<any, any> {
     );
   }
 }
-//>>>>>>>>>>>>>>>>>> END INPUTCHECK

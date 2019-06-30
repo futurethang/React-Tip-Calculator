@@ -1,8 +1,5 @@
 import React from "react";
 
-//------------------------------------------------------
-
-//>>>>>>>>>>>>>>>>>>>>>>>>> HEADER
 export default function Header(): JSX.Element {
   return (
     <div>
@@ -12,4 +9,3 @@ export default function Header(): JSX.Element {
     </div>
   );
 }
-//>>>>>>>>>>>>>>>>>>>>>>>>> END HEADER
