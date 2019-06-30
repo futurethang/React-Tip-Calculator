@@ -4,15 +4,5 @@ A simple, clean and intuitive calculator to help patrons compute and easily spli
 
 Visit the live project at [https://shrouded-chamber-75975.herokuapp.com/](https://shrouded-chamber-75975.herokuapp.com/)
 
-### Developer's Notes:
+![Screen Shot 2019-06-30 at 2 01 16 PM](https://user-images.githubusercontent.com/17099707/60402101-91085c80-9b3f-11e9-88bf-a71cf69c6ca4.png)
 
-#### Features to build:
-* better buttons for editing split number
-* slider control for tip percentage
-* visual reactivity to tip % amount (hue shift? confetti? smiley?)
-* remove 'any' types from codebase
-* refactor into component modules
-* leave ample comments
-
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
