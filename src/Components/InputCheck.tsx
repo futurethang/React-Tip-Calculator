@@ -2,12 +2,6 @@ import React from "react";
 import "../App.css";
 
 export default class InputCheck extends React.Component<any, any> {
-  constructor(props: any) {
-    super(props);
-    this.state = {
-      amount: 0.0
-    };
-  }
 
   handleChange = (e: any) => {
     let newValue = parseFloat(e.target.value).toFixed(2);

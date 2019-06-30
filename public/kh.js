@@ -5,11 +5,11 @@ document.addEventListener("DOMContentLoaded", function() {
   inputs.forEach(input => {
     // set action for when the area is focused upon
     input.addEventListener("focus", e => {
-      input.closest(".section").classList.toggle("focus");
+      input.closest(".section").classList.add("focus");
     });
     // reset when the area is focused away from
     input.addEventListener("blur", e => {
-      input.closest(".section").classList.toggle("focus");
+      input.closest(".section").classList.remove("focus");
     });
   });
 });
