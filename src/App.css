@@ -14,8 +14,8 @@ input[type="number"] {
 .App {
   width: 375px;
   margin: auto;
+  overflow: hidden;
   text-align: center;
-  background: #eeeeee;
 }
 
 .App-logo {
@@ -28,6 +28,7 @@ input[type="number"] {
   color: #8e8e8e;
   display: flex;
   flex-direction: column;
+  height: 4em;
   margin-bottom: -20px;
 }
 
@@ -46,6 +47,7 @@ input[type="number"] {
 h1 {
   font-family: "Quicksand", sans-serif;
   font-weight: 100;
+  font-size: 1.75em;
   color: rgb(56, 73, 110);
   letter-spacing: 0.1em;
 }
@@ -168,7 +170,7 @@ input:focus {
 
 .taxTotal {
   font-family: "Quicksand", sans-serif;
-  font-size: 3em;
+  font-size: 2.5em;
   color: #444;
   margin-block-start: 0.25em;
   margin-block-end: 0.05em;
