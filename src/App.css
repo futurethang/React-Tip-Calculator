@@ -47,9 +47,10 @@ input[type="number"] {
 h1 {
   font-family: "Quicksand", sans-serif;
   font-weight: 100;
-  font-size: 1.75em;
+  font-size: 1.25em;
   color: rgb(56, 73, 110);
   letter-spacing: 0.1em;
+  margin-top: 1em;
 }
 
 input {
@@ -79,6 +80,17 @@ input:focus {
   transition: padding 300ms ease;
 }
 
+.section.tip-area {
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.section.tip-area > * {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  margin-right: 2em
+}
+
 .focus {
   background-color: #fff;
   width: 120%;
@@ -95,6 +107,7 @@ input:focus {
   font-size: 1.25em;
   text-align: left;
   color: #999;
+  white-space: nowrap;
 }
 
 .inputArea {

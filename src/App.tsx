@@ -12,6 +12,7 @@ export interface ITipCalculator {
   billTotal: number;
   taxes: number;
   partySize: number;
+  splitTip: number;
   tipPercent: number;
   tipTotal: number;
   grandTotal: number;
@@ -23,6 +24,7 @@ class App extends React.Component<any, ITipCalculator> {
     taxes: 0, // taxes on bill
     partySize: 1, // number of people sharing the tip total
     tipPercent: 18, // percent to tip
+    splitTip: 0,
     tipTotal: 0, // calculated tip amount, excluding tax from the total
     grandTotal: 0, // final paymeny total, tax and tip included
     hue: 100 // style variable to update the app background color
@@ -44,11 +46,12 @@ class App extends React.Component<any, ITipCalculator> {
     const { billTotal, taxes, partySize, tipPercent } = this.state;
     let totalNoTax = billTotal - taxes;
     let tipAsPercent = tipPercent / 100;
-    let tipTotal = totalNoTax * tipAsPercent || 0; // default to 0 to avoid NaN
+    let tipTotal = Math.round(totalNoTax * tipAsPercent * 1e2) / 1e2 || 0; // default to 0 to avoid NaN ;
     let grandTotal = Math.round((Number(billTotal) + tipTotal) * 1e2) / 1e2; // rounded and parsed to display dollars.cents float format correctly
     let outPut = Math.round((tipTotal / partySize) * 1e2) / 1e2;
     this.setState({
-      tipTotal: outPut,
+      splitTip: outPut,
+      tipTotal: tipTotal,
       grandTotal: grandTotal
     });
   };
@@ -105,7 +108,11 @@ class App extends React.Component<any, ITipCalculator> {
           increment={this.incrementPartySize}
           decrement={this.decrementPartySize}
         />
-        <TipTotal label="tip per person" tipTotal={this.state.tipTotal} />
+        <TipTotal
+          label="tip per person"
+          tipTotal={this.state.tipTotal}
+          splitTip={this.state.splitTip}
+        />
         <GrandTotal
           label="total amount due"
           grandTotal={this.state.grandTotal}
