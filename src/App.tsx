@@ -1,7 +1,10 @@
 import React from "react";
+import Header from "./Components/Header";
+import InputCheck from "./Components/InputCheck";
 import "./App.css";
 
 export interface ITipCalculator {
+  // Defin the shape of the main State object
   billTotal: number;
   taxes: number;
   partySize: number;
@@ -12,15 +15,16 @@ export interface ITipCalculator {
 
 class App extends React.Component<any, ITipCalculator> {
   state = {
-    billTotal: 0,
-    taxes: 0,
-    partySize: 1,
-    tipPercent: 18,
-    tipTotal: 0,
-    grandTotal: 0,
-    hue: 100
+    billTotal: 0, // bill total before tax
+    taxes: 0, // taxes on bill
+    partySize: 1, // number of people sharing the tip total
+    tipPercent: 18, // percent to tip
+    tipTotal: 0, // calculated tip amount, excluding tax from the total
+    grandTotal: 0, // final paymeny total, tax and tip included
+    hue: 100 // style variable to update the app background color
   };
 
+  // a function that receives properties and values as input and updates state
   updateBalance = async (updateObj: any) => {
     const { newValue, propToUpdate } = updateObj;
     // console.log(newValue, propToUpdate);
@@ -31,28 +35,21 @@ class App extends React.Component<any, ITipCalculator> {
     this.updateTip();
   };
 
+  // function to calculate the correct tip total and grand total to update to the state
   updateTip = () => {
     const { billTotal, taxes, partySize, tipPercent } = this.state;
     let totalNoTax = billTotal - taxes;
-
     let tipAsPercent = tipPercent / 100;
-    let tipTotal = totalNoTax * tipAsPercent || 0;
-    let grandTotal = Math.round((Number(billTotal) + tipTotal) * 1e2) / 1e2;
-
-    // (Number(billTotal) + tipTotal).toFixed(2);
-
-    // the issure below is that the tip total comes after party division, which leaves no reference to the actual tip total, just the split one
+    let tipTotal = totalNoTax * tipAsPercent || 0; // default to 0 to avoid NaN
+    let grandTotal = Math.round((Number(billTotal) + tipTotal) * 1e2) / 1e2; // rounded and parsed to display dollars.cents float format correctly
     let outPut = Math.round((tipTotal / partySize) * 1e2) / 1e2;
-    // parseInt((tipTotal / partySize).toFixed(2));
-
-    // debugger;
-    // let dividedByPartySize = totalNoTax / partySize;
     this.setState({
       tipTotal: outPut,
       grandTotal: grandTotal
     });
   };
 
+  // action functions to adjust party size
   incrementPartySize = async () => {
     let newSize = this.state.partySize + 1;
     await this.setState({
@@ -117,56 +114,42 @@ class App extends React.Component<any, ITipCalculator> {
 
 //------------------------------------------------------
 
-//>>>>>>>>>>>>>>>>>>>>>>>>> HEADER
-function Header(): JSX.Element {
-  return (
-    <div>
-      <header className="App-header">
-        <h1>TIP CALCULATOR</h1>
-      </header>
-    </div>
-  );
-}
-//>>>>>>>>>>>>>>>>>>>>>>>>> END HEADER
-
-//------------------------------------------------------
-
 //>>>>>>>>>>>>>>>>>> INPUTCHECK
-class InputCheck extends React.Component<any, any> {
-  constructor(props: any) {
-    super(props);
-    this.state = {
-      amount: 0.0
-    };
-  }
+// class InputCheck extends React.Component<any, any> {
+//   constructor(props: any) {
+//     super(props);
+//     this.state = {
+//       amount: 0.0
+//     };
+//   }
 
-  handleChange = (e: any) => {
-    let newValue = parseFloat(e.target.value).toFixed(2);
-    let updateObj = {
-      newValue: newValue,
-      propToUpdate: this.props.dataProp
-    };
-    this.props.updateBalance(updateObj);
-  };
+//   handleChange = (e: any) => {
+//     let newValue = parseFloat(e.target.value).toFixed(2);
+//     let updateObj = {
+//       newValue: newValue,
+//       propToUpdate: this.props.dataProp
+//     };
+//     this.props.updateBalance(updateObj);
+//   };
 
-  render() {
-    return (
-      <div className="section">
-        <label className="inputLabel">{this.props.label}</label>
-        <div className="inputArea">
-          <span>$</span>
-          <input
-            type="number"
-            step="0.01"
-            className="inputArea_text"
-            placeholder={this.props.balance}
-            onChange={this.handleChange}
-          />
-        </div>
-      </div>
-    );
-  }
-}
+//   render() {
+//     return (
+//       <div className="section">
+//         <label className="inputLabel">{this.props.label}</label>
+//         <div className="inputArea">
+//           <span>$</span>
+//           <input
+//             type="number"
+//             step="0.01"
+//             className="inputArea_text"
+//             placeholder={this.props.balance}
+//             onChange={this.handleChange}
+//           />
+//         </div>
+//       </div>
+//     );
+//   }
+// }
 //>>>>>>>>>>>>>>>>>> END INPUTCHECK
 
 //------------------------------------------------------
@@ -206,7 +189,7 @@ class TipSettings extends React.Component<any, any> {
     };
     this.props.updateBalance(updateObj);
   };
-
+  // live-update function that converts the user's touch response into hue shifted backround that mirrors the service experience
   slideTipUpdate = async (e: number) => {
     let tip; // default tip amount to adjust with swipe
     let minimumTip: number = 10;
@@ -255,6 +238,7 @@ class TipSettings extends React.Component<any, any> {
             onChange={this.handleChange}
           />
           <span>%</span>
+          <div className="shine" style={{ fontSize: ".5em", marginLeft: "1em" }}>slide to adjust tip</div>
         </div>
         {/* replace with onTouch slider UI element that modifies state */}
       </div>

@@ -168,7 +168,7 @@ input:focus {
 
 .taxTotal {
   font-family: "Quicksand", sans-serif;
-  font-size: 4em;
+  font-size: 3em;
   color: #444;
   margin-block-start: 0.25em;
   margin-block-end: 0.05em;
@@ -177,4 +177,3 @@ input:focus {
   justify-content: flex-start;
   align-items: baseline;
 }
-
