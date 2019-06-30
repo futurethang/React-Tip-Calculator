@@ -59,7 +59,7 @@ export default class TipSettings extends React.Component<any, any> {
             onChange={this.handleChange}
           />
           <span>%</span>
-          <div className="shine" style={{ fontSize: ".5em", marginLeft: "1em" }}>slide to adjust tip</div>
+          <div className="mobile-only" style={{ fontSize: ".5em", margin: "auto 0 auto 1em" }}>&#60;&#60;  slide to adjust tip  &#62;&#62;</div>
         </div>
         {/* replace with onTouch slider UI element that modifies state */}
       </div>

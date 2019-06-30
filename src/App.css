@@ -164,8 +164,8 @@ input:focus {
   transition: transform 75ms ease-in-out;
 }
 
-.icon:active { 
-  transform: scale(.8)
+.icon:active {
+  transform: scale(0.8);
 }
 
 .taxTotal {
@@ -178,4 +178,10 @@ input:focus {
   flex-direction: row;
   justify-content: flex-start;
   align-items: baseline;
+}
+
+@media screen and (min-width: 400px) {
+  .mobile-only {
+    display: none;
+  }
 }
